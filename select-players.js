@@ -3,6 +3,7 @@ import OBR from "https://esm.sh/@owlbear-rodeo/sdk@3";
 const ID = "com.example.show-token";
 const MODAL_ID = `${ID}/select-players-modal`;
 const BROADCAST_CHANNEL = `${ID}/show-token-channel`;
+const SHOW_NAME_METADATA_KEY = `${ID}/showName`;
 
 const params = new URLSearchParams(window.location.search);
 const imageUrl = params.get("imageUrl") || "";
@@ -83,6 +84,10 @@ selectAllCheckbox.addEventListener("change", () => {
   updateSendButtonState();
 });
 
+showNameCheckbox.addEventListener("change", () => {
+  OBR.player.setMetadata({ [SHOW_NAME_METADATA_KEY]: showNameCheckbox.checked });
+});
+
 cancelBtn.addEventListener("click", async () => {
   await OBR.modal.close(MODAL_ID);
 });
@@ -111,6 +116,13 @@ async function init() {
     const theme = await OBR.theme.getTheme();
     applyTheme(theme);
     OBR.theme.onChange(applyTheme);
+
+    // Wczytujemy zapamiętany wybór "Show token name" z metadanych gracza (GM)
+    const metadata = await OBR.player.getMetadata();
+    const savedShowName = metadata[SHOW_NAME_METADATA_KEY];
+    if (typeof savedShowName === "boolean") {
+      showNameCheckbox.checked = savedShowName;
+    }
 
     const party = await OBR.party.getPlayers();
     players = party.map((p) => ({ id: p.id, name: p.name, color: p.color }));

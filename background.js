@@ -2,6 +2,7 @@ import OBR from "https://esm.sh/@owlbear-rodeo/sdk@3";
 
 const BASE_URL = "https://avensline.github.io/showToken/";
 
+// Unikalny identyfikator naszego dodatku (reverse domain notation)
 const ID = "com.example.show-token";
 const CONTEXT_MENU_ID = `${ID}/context-menu`;
 const MODAL_ID = `${ID}/select-players-modal`;
@@ -56,8 +57,7 @@ function setupBroadcastListener() {
     await OBR.modal.open({
       id: POPUP_ID,
       url: `${BASE_URL}show-token.html?imageUrl=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(name || "")}&showName=${showName ? "1" : "0"}`,
-      height: 700,
-      width: 700,
+      fullScreen: true,
     });
   });
 }
