@@ -1,8 +1,15 @@
 {
   "name": "Show Token",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 1,
   "description": "Show selected players (or everyone) a zoomed-in preview of the selected token in a separate window.",
   "icon": "https://avensline.github.io/showToken/icon.svg",
-  "background_url": "https://avensline.github.io/showToken/background.html"
+  "background_url": "https://avensline.github.io/showToken/background.html",
+  "action": {
+    "title": "Show Token",
+    "icon": "https://avensline.github.io/showToken/icon.svg",
+    "popover": "https://avensline.github.io/showToken/action.html",
+    "width": 280,
+    "height": 140
+  }
 }

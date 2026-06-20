@@ -169,6 +169,26 @@ body {
   background: var(--bg-elevated);
 }
 
+.action-wrap {
+  padding: 14px;
+}
+
+.action-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.action-controls[hidden],
+.action-wrap p[hidden] {
+  display: none;
+}
+
+.action-close-btn {
+  width: 100%;
+}
+
 .viewer-wrap {
   display: flex;
   flex-direction: column;

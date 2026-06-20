@@ -9,12 +9,12 @@ function isMobileScreen() {
   return screenWidth < MOBILE_WIDTH_THRESHOLD;
 }
 
-// Unikalny identyfikator naszego dodatku (reverse domain notation)
 const ID = "com.example.show-token";
 const CONTEXT_MENU_ID = `${ID}/context-menu`;
 const MODAL_ID = `${ID}/select-players-modal`;
 const POPUP_ID = `${ID}/show-token-popup`;
 const BROADCAST_CHANNEL = `${ID}/show-token-channel`;
+const CLOSE_BROADCAST_CHANNEL = `${ID}/close-token-channel`;
 
 async function setupContextMenu() {
   const role = await OBR.player.getRole();
@@ -61,6 +61,8 @@ function setupBroadcastListener() {
     const isTarget = targetAll || (Array.isArray(targetIds) && targetIds.includes(myId));
     if (!isTarget) return;
 
+    await OBR.modal.close(POPUP_ID).catch(() => {});
+
     const modalOptions = isMobileScreen()
       ? { fullScreen: true }
       : { height: 900, width: 900 };
@@ -73,6 +75,12 @@ function setupBroadcastListener() {
   });
 }
 
+function setupCloseListener() {
+  OBR.broadcast.onMessage(CLOSE_BROADCAST_CHANNEL, async () => {
+    await OBR.modal.close(POPUP_ID).catch(() => {});
+  });
+}
+
 OBR.onReady(() => {
   setupContextMenu().catch((err) =>
     console.error("[Show Token] Failed to register context menu:", err)
@@ -81,5 +89,10 @@ OBR.onReady(() => {
     setupBroadcastListener();
   } catch (err) {
     console.error("[Show Token] Failed to register broadcast listener:", err);
+  }
+  try {
+    setupCloseListener();
+  } catch (err) {
+    console.error("[Show Token] Failed to register close listener:", err);
   }
 });

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Show Token controls</title>
+  <link rel="stylesheet" href="./shared.css" />
+</head>
+<body>
+  <div class="action-wrap">
+    <p class="action-hint" id="gm-only-hint">Only the GM can use this.</p>
+    <div id="gm-controls" class="action-controls" hidden>
+      <p class="action-hint">
+        Use this if a viewer (e.g. a TV cast) can't close the token window themselves.
+      </p>
+      <button id="close-all-btn" class="btn btn-primary action-close-btn">
+        Close shown token for everyone
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="./action.js"></script>
+</body>
+</html>

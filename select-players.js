@@ -85,7 +85,7 @@ selectAllCheckbox.addEventListener("change", () => {
 });
 
 showNameCheckbox.addEventListener("change", () => {
-  OBR.player.setMetadata({ [SHOW_NAME_METADATA_KEY]: showNameCheckbox.checked });
+  OBR.room.setMetadata({ [SHOW_NAME_METADATA_KEY]: showNameCheckbox.checked });
 });
 
 cancelBtn.addEventListener("click", async () => {
@@ -117,8 +117,7 @@ async function init() {
     applyTheme(theme);
     OBR.theme.onChange(applyTheme);
 
-    // Wczytujemy zapamiętany wybór "Show token name" z metadanych gracza (GM)
-    const metadata = await OBR.player.getMetadata();
+    const metadata = await OBR.room.getMetadata();
     const savedShowName = metadata[SHOW_NAME_METADATA_KEY];
     if (typeof savedShowName === "boolean") {
       showNameCheckbox.checked = savedShowName;
