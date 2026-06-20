@@ -2,6 +2,13 @@ import OBR from "https://esm.sh/@owlbear-rodeo/sdk@3";
 
 const BASE_URL = "https://avensline.github.io/showToken/";
 
+const MOBILE_WIDTH_THRESHOLD = 700;
+
+function isMobileScreen() {
+  const screenWidth = window.screen?.width || window.innerWidth;
+  return screenWidth < MOBILE_WIDTH_THRESHOLD;
+}
+
 // Unikalny identyfikator naszego dodatku (reverse domain notation)
 const ID = "com.example.show-token";
 const CONTEXT_MENU_ID = `${ID}/context-menu`;
@@ -54,10 +61,14 @@ function setupBroadcastListener() {
     const isTarget = targetAll || (Array.isArray(targetIds) && targetIds.includes(myId));
     if (!isTarget) return;
 
+    const modalOptions = isMobileScreen()
+      ? { fullScreen: true }
+      : { height: 900, width: 900 };
+
     await OBR.modal.open({
       id: POPUP_ID,
       url: `${BASE_URL}show-token.html?imageUrl=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(name || "")}&showName=${showName ? "1" : "0"}`,
-      fullScreen: true,
+      ...modalOptions,
     });
   });
 }
