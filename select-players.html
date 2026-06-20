@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select recipients</title>
+  <link rel="stylesheet" href="./shared.css" />
+</head>
+<body>
+  <div class="modal-wrap">
+    <h2 class="title">Show token to players</h2>
+
+    <div class="preview-row" id="preview-row">
+      <img id="preview-image" class="preview-thumb" alt="Token preview" />
+      <span id="preview-name" class="preview-name"></span>
+    </div>
+
+    <label class="player-row option-row">
+      <input type="checkbox" id="show-name-checkbox" checked />
+      <span>Show token name to players</span>
+    </label>
+
+    <div class="section-label">Recipients</div>
+
+    <label class="player-row all-row">
+      <input type="checkbox" id="select-all" />
+      <span>All players</span>
+    </label>
+
+    <div id="players-list" class="players-list">
+      <div class="loading">Loading player list…</div>
+    </div>
+
+    <div class="button-row">
+      <button id="cancel-btn" class="btn btn-secondary">Cancel</button>
+      <button id="send-btn" class="btn btn-primary" disabled>Show token</button>
+    </div>
+  </div>
+
+  <script type="module" src="./select-players.js"></script>
+</body>
+</html>

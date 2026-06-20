@@ -1,0 +1,8 @@
+{
+  "name": "Show Token",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "Show selected players (or everyone) a zoomed-in preview of the selected token in a separate window.",
+  "icon": "https://avensline.github.io/showToken/icon.svg",
+  "background_url": "https://avensline.github.io/showToken/background.html"
+}
