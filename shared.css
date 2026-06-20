@@ -91,7 +91,6 @@ body {
 }
 
 .all-row {
-  border: 1px solid var(--border);
   margin-bottom: 10px;
   font-weight: 500;
 }
